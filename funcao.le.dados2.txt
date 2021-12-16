@@ -1,0 +1,5 @@
+le.dados2<-function()
+{
+dados<<-read.table(file.choose(),h=T,skip=0)
+}  #fim do if para opcao = 2
+

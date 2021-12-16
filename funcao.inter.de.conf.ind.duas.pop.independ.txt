@@ -1,0 +1,26 @@
+ic_individualci<-function(dados)
+{
+alpha<-as.numeric(readline("Informe o nível de confiânça desejado:  "))
+IC<-matrix(0,nrow=ncol(dados)-1,ncol=2,dimnames=list(NULL,c("LI","LS")))
+#IC<-matrix(0,nrow=ncol(dados),ncol=3)
+y1<-dados[dados[,1]==1,2:ncol(dados)]
+y2<-dados[dados[,1]==2,2:ncol(dados)]
+media.1<-mean(y1)
+media.2<-mean(y2)
+S.D1<-var(y1)
+S.D2<-var(y2)
+S.P<-((nrow(y1)-1)*S.D1+(nrow(y2)-1)*S.D2)/(nrow(dados)-2)
+n1<-nrow(y1)
+n2<-nrow(y2)
+p<-ncol(dados)-1
+vetores<-diag(ncol(dados)-1)
+for(i in 1:(ncol(dados)-1))
+ {
+  LI<-t(vetores[i,])%*%(media.1-media.2)-(qt(alpha/2,n1+n2-2, lower.tail = F))*sqrt((nrow(dados))*t(vetores[i,])%*%S.P%*%vetores[i,])/(nrow(y1)*nrow(y2))
+  LS<-t(vetores[i,])%*%(media.1-media.2)+(qt(alpha/2,n1+n2-2, lower.tail = F))*sqrt((nrow(dados))*t(vetores[i,])%*%S.P%*%vetores[i,])/(nrow(y1)*nrow(y2))
+  IC[i,]<-cbind(LI,LS)
+ }
+row.names(IC)<-names(dados[,2:ncol(dados)])
+print(IC)
+}
+#ic_individualci(dados)

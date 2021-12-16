@@ -1,0 +1,24 @@
+ic_bonferroni<-function(dados)
+{
+alpha<-as.numeric(readline("Informe o nível de confiânça desejado:  "))
+#IC<-matrix(0,nrow=ncol(dados),ncol=3)
+IC<-matrix(0,nrow=ncol(dados),ncol=2,dimnames=list(NULL,c("LI","LS")))
+mu<-mean(dados)
+sigma<-var(dados)
+vetores<-diag(ncol(dados))
+alpha1<-alpha/ncol(dados)
+for(i in 1:ncol(dados))
+ {
+  LI<-t(vetores[i,])%*%mu-(qt(alpha1/2, nrow(dados)-1, lower.tail = F))*sqrt((t(vetores[i,])%*%sigma%*%vetores[i,])/(nrow(dados)))
+  LS<-t(vetores[i,])%*%mu+(qt(alpha1/2, nrow(dados)-1, lower.tail = F))*sqrt((t(vetores[i,])%*%sigma%*%vetores[i,])/(nrow(dados)))
+  IC[i,]<-cbind(LI,LS)
+ }
+row.names(IC)<-names(dados)
+print(IC)
+}
+#ic_bonferroni(dados)
+
+
+
+
+

@@ -1,0 +1,14 @@
+tmcI2<-function(dados)
+{
+alpha<-as.numeric(readline("Informe o nível de significância desejado:  "))
+est<--1*((nrow(dados)-1)-(2*ncol(dados)+5)/(6))*log(det(cor(dados)))
+cat("O valor da estatística de teste é:",est,".",fill=T)
+qui<-qchisq(alpha,(ncol(dados)*(ncol(dados)-1))/2,lower.tail=F)
+cat("O valor crítico delimitador da região de rejeição considerando",alpha," é:",qui, fill=T)
+pr.f = 1 - pchisq(est,(ncol(dados)*(ncol(dados)-1))/2)
+cat("valor-p:",pr.f,".",fill=T)
+}
+#tmcI2(dados)
+
+
+

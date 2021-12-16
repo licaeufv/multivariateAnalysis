@@ -1,0 +1,46 @@
+#OUtro exemplo (dados) dados=read.table("pastCN.txt",header=T)
+
+
+####Homogeneidade de variâncias###########################################
+
+# função para realizar o teste LR de homogeneidade de covariâncias para p 
+# variáveis, H0: Sigma_i=Sigma, qualquer que seja i=1, 2, ..., I
+# Chi2=-(sum(n_i*ln(det(Sn_i))-n*ln(det(Sn))),
+# em que Sn_i e Sn são as matrizes de covariâncias viesadas da i-ésima
+# população e comum. A matriz de dados Y (n x (1+p)) deve conter na primeira
+# coluna a identificação da população e nas demais as p variáveis, com n observações
+# exige que os dados estejam ordenados por população e fornecer tamanhos das
+# I amostras no vetor ni 
+
+thmc= function(dados)
+{  
+  Y<-dados
+  alpha<-as.numeric(readline("Informe o nível de significância desejado:  "))
+  I<-as.numeric(readline("Informe o número de populações em estudo:  "))
+  readline("Para entrar com o número de elementos de casa população tecle enter!")
+  ni<-edit(matrix(0,I,1))  
+  total = 0;
+  n=nrow(Y);p=ncol(Y)-1
+  Sc = matrix(0,p,p)
+  aux=0
+  for (i in 1:I)
+  {    
+    X=as.matrix(Y[(total+1):(total+ni[i]),2:(p+1)])
+    Si =var(X)*(ni[i]-1)/ni[i]
+    aux =aux + ni[i]*log(det(Si))
+    Sc = Sc + ni[i]*Si 
+    total=total+ni[i]    
+  } 
+  Sc = Sc/n
+  est =-1*(aux -n*log(det(Sc))) 
+  cat("O valor da estatística de teste é:",est,".",fill=T)
+  qui1<- qchisq(alpha,(I-1)*p*(p+1)/2,lower.tail=F)
+  cat("O valor crítico delimitador da região de rejeição considerando",alpha," é:",qui1, fill=T)
+  f = (I-1)*p*(p+1)/2
+  pr.qui = 1 - pchisq(est,f)
+  cat("valor-p:",pr.qui,".",fill=T)
+ # list(qui=qui,pr.qui=pr.qui,qui1=qui1,f=f)   
+}
+#thmc(dados)
+
+

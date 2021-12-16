@@ -1,0 +1,25 @@
+ic_simultaneo<-function(dados)
+{
+alpha<-as.numeric(readline("Informe o nível de confiânça desejado:  "))
+#IC<-matrix(0,nrow=ncol(dados),ncol=3,dimnames=list(NULL,c("variáveis","LI","LS")))
+IC<-matrix(0,nrow=ncol(dados),ncol=2,dimnames=list(NULL,c("LI","LS")))
+mu<-mean(dados)
+sigma<-var(dados)
+vetores<-diag(ncol(dados))
+for(i in 1:ncol(dados))
+ {
+  LI<-t(vetores[i,])%*%mu-sqrt(((nrow(dados)-1)*ncol(dados))/(nrow(dados)-ncol(dados))*(qf(alpha, ncol(dados), (nrow(dados)-ncol(dados)), lower.tail = F)))*sqrt((t(vetores[i,])%*%sigma%*%vetores[i,])/(nrow(dados)))
+  LS<-t(vetores[i,])%*%mu+sqrt(((nrow(dados)-1)*ncol(dados))/(nrow(dados)-ncol(dados))*(qf(alpha, ncol(dados), (nrow(dados)-ncol(dados)), lower.tail = F)))*sqrt((t(vetores[i,])%*%sigma%*%vetores[i,])/(nrow(dados)))
+  IC[i,]<-cbind(LI,LS)
+ }
+row.names(IC)<-names(dados)
+#print("Os intervalos de confiança simultaneos são dados por:")
+print(IC)
+}
+#ic_simultaneo(dados)
+
+
+
+
+
+

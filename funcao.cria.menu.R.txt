@@ -1,0 +1,38 @@
+
+#criar os menus do R
+
+
+winMenuAdd("Entrada")
+winMenuAdd("Entrada/ler dados")
+winMenuAddItem("Entrada/ler dados", ".txt", "le.dados2()")
+
+######## nova aba
+winMenuAdd("Estatística Multivariada")
+#######Teste vetor de médias
+winMenuAdd("Estatística Multivariada/Testes para Vetores de Médias")
+winMenuAddItem("Estatística Multivariada/Testes para Vetores de Médias", "Covariância Conhecida", "tvmcc(dados)" )
+winMenuAddItem("Estatística Multivariada/Testes para Vetores de Médias", "Covariância Desconhecida", "tvmcd(dados)")
+winMenuAddItem("Estatística Multivariada/Testes para Vetores de Médias/Intervalos de confiânça", "Individual", "ic_individual(dados)")
+winMenuAddItem("Estatística Multivariada/Testes para Vetores de Médias/Intervalos de confiânça", "Bonferroni", "ic_bonferroni(dados)")
+winMenuAddItem("Estatística Multivariada/Testes para Vetores de Médias/Intervalos de confiânça", "Simultâneo", "ic_simultaneo(dados)")
+######Teste Matriz de Covariância
+winMenuAdd("Estatística Multivariada/Testes para Matrizes de Covariância")
+winMenuAddItem("Estatística Multivariada/Testes para Matrizes de Covariância/Matriz de Covariância Específica", "TRV original", "tmce1(dados)" )
+winMenuAddItem("Estatística Multivariada/Testes para Matrizes de Covariância/Matriz de Covariância Específica", "TRV modificado por Korin", "tvmcc(dados)" )
+winMenuAddItem("Estatística Multivariada/Testes para Matrizes de Covariância/Matriz de Covariância Específica", "TRV modificado por Ledoit & Wolf", "tvmcc(dados)" )
+winMenuAddItem("Estatística Multivariada/Testes para Matrizes de Covariância/Independência", "TRV original", "tvmcd(dados)")
+winMenuAddItem("Estatística Multivariada/Testes para Matrizes de Covariância/Independência", "TRV modificado por Bartlett", "tvmcd(dados)")
+winMenuAddItem("Estatística Multivariada/Testes para Matrizes de Covariância/Esfericidade", "TRV orginal", "tvmcd(dados)")
+winMenuAddItem("Estatística Multivariada/Testes para Matrizes de Covariância/Esfericidade", "TRV modificado por Box", "tvmcd(dados)")
+winMenuAddItem("Estatística Multivariada/Testes para Matrizes de Covariância/Homogeneidade entre matrizes de Covariância", "TRV original", "tvmcd(dados)")
+
+
+
+
+######## nova aba
+
+
+
+
+
+

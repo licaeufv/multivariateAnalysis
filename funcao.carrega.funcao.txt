@@ -1,0 +1,9 @@
+#carregando as funções
+source("funcoes.mult/funcao.cria.menu.R1.txt")
+source("funcoes.multi/funcao.inter.de.conf.bonferroni.txt")
+source("funcoes.multi/funcao.inter.de.conf.ind.txt")
+source("funcoes.multi/funcao.inter.de.conf.simultaneo.txt")
+source("funcoes.multi/funcao.le.dados2.txt")
+source("funcoes.multi/funcao.teste.matriz.cov.esp.1.txt")
+source("funcoes.multi/funcao.teste.vetor.m.cov.conh.txt")
+source("funcoes.multi/funcao.teste.vetor.m.cov.desconh.txt")

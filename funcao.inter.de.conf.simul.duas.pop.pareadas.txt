@@ -1,0 +1,24 @@
+ic_simultaneocemp<-function(dados)
+{
+alpha<-as.numeric(readline("Informe o nível de confiânça desejado:  "))
+IC<-matrix(0,nrow=ncol(dados)-1,ncol=2,dimnames=list(NULL,c("LI","LS")))
+#IC<-matrix(0,nrow=ncol(dados),ncol=3)
+y1<-dados[dados[,1]==1,2:ncol(dados)]
+y2<-dados[dados[,1]==2,2:ncol(dados)]
+D<-y2-y1
+media.D<-mean(D)
+S.D<-var(D)
+vetores<-diag(ncol(dados)-1)
+v<-(nrow(dados)/2-1)
+p<-(ncol(dados)-1)
+t2<-(v*p)/(v+1-p)*qf(alpha,p,v+1-p,lower.tail=F)
+for(i in 1:(ncol(dados)-1))
+ {
+  LI<-t(vetores[i,])%*%media.D-(sqrt(t2))*sqrt((t(vetores[i,])%*%S.D%*%vetores[i,])/(nrow(dados)/2))
+  LS<-t(vetores[i,])%*%media.D+(sqrt(t2))*sqrt((t(vetores[i,])%*%S.D%*%vetores[i,])/(nrow(dados)/2))
+  IC[i,]<-cbind(LI,LS)
+ }
+row.names(IC)<-names(dados[,2:ncol(dados)])
+print(IC)
+}
+#ic_simultaneocemp(dados)
